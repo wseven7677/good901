@@ -1,0 +1,7 @@
+node_modules
+.vscode
+
+app/config
+app/lib/controller.js
+app/lib/service.js
+app/lib/plugin.js
