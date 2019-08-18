@@ -31,7 +31,9 @@ class W {
 
         this.app.post(api, (req, res) => {
             ctx.request = req;
-            ctx.log.write(`${this.headerMsg}--post--request--\n${JSON.stringify(req)}`);
+            const { host, hostname, url, headers, query, body, method, ip, ips, httpVersion, domain } = req;
+
+            ctx.log.write(`${this.headerMsg}--post--request--\n${JSON.stringify({ host, hostname, url, headers, query, body, method, ip, ips, httpVersion, domain })}`);
             cb(ctx).then(() => {
                 ctx.log.write(
                     `${this.headerMsg}--post--response--\n${JSON.stringify(ctx.response)}`

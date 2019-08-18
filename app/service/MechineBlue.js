@@ -91,6 +91,7 @@ class MechineBlue {
 
     async send531paper() {
         const now = moment();
+
         const list = await this.ctx.service.biliApi.getTagVideoList(
             '2494311',
             20
@@ -126,7 +127,7 @@ class MechineBlue {
             </ul>
         </p>
         `;
-        const res = await this.ctx.service.mail.send(['295123479@qq.com'], `【吴宣仪日报】${moment().format('YYYY-MM-DD')}`, content);
+        const res = await this.ctx.service.mail.send(['295123479@qq.com'], `【吴宣仪日报】${now.format('YYYY-MM-DD')}`, content);
         return res;
     }
 }
