@@ -19,6 +19,10 @@ function start(app) {
         return ctx.controller.mechineBlue.sendNightPaper(ctx);
     });
 
+    w.get('/api/send_531_paper', ctx => {
+        return ctx.controller.mechineBlue.send531paper(ctx);
+    });
+
 }
 
 export default start;

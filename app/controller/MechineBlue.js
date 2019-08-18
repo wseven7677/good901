@@ -18,6 +18,14 @@ class MechineBlue {
             resolve();
         });
     }
+
+    send531paper(ctx) {
+        return new Promise(async resolve => {
+            const rst = await ctx.service.mechineBlue.send531paper();
+            ctx.response = rst;
+            resolve();
+        });
+    }
 }
 
 export default MechineBlue;

@@ -21,6 +21,14 @@ function main() {
     });
     console.log('scheduling night paper...');
 
+    schedule.scheduleJob('10 19 * * *', d => {
+        axios.get(`http://${config.host}:${config.port}/api/send_531_paper`)
+        .then(res => {
+            console.log(res.data);
+        });
+    });
+    console.log('scheduling 531 paper...');
+
 }
 
 main();

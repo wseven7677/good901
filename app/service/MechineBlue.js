@@ -88,6 +88,47 @@ class MechineBlue {
         const res = await this.ctx.service.mail.send(receivers, title, content);
         return res;
     }
+
+    async send531paper() {
+        const now = moment();
+        const list = await this.ctx.service.biliApi.getTagVideoList(
+            '2494311',
+            20
+        );
+        const contentItems = list
+            .map(one => {
+                return {
+                    title: one.title,
+                    av: one.aid,
+                    pic: one.pic,
+                    ctime: one.ctime
+                };
+            })
+            .map(one => {
+                return `
+                <li style="margin-bottom: 50px;">
+                    <img style="width: 200px;" src="${one.pic}"/>
+                    <h3>${one.title}</h3>
+                    <a href="https://www.bilibili.com/video/av${
+                        one.av
+                    }" style="color: red;">av${one.av}</a>
+                    <span>时间：${moment(one.ctime * 1000).format(
+                        'YYYYMMDD HH:mm:ss'
+                    )}</span>
+                </li>
+                `;
+            });
+
+        const content = `
+        <p style="font-size: 18px;">
+            <ul>
+                ${contentItems.join('')}
+            </ul>
+        </p>
+        `;
+        const res = await this.ctx.service.mail.send(['295123479@qq.com'], `【吴宣仪日报】${moment().format('YYYY-MM-DD')}`, content);
+        return res;
+    }
 }
 
 export default MechineBlue;
