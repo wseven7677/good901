@@ -30,7 +30,7 @@ function main() {
     });
     console.log('scheduling 531 status...');
 
-    schedule.scheduleJob('0 * * * * *', d => {
+    schedule.scheduleJob('7 12 * * *', d => {
         const now = moment();
         let logs = fs.readFileSync(logPath, { encoding: 'utf-8' });
         
