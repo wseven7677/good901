@@ -16,7 +16,7 @@ class Log {
                 arr.splice(
                     1,
                     0,
-                    `-${moment(stat.birthtime).format('YYYYMMDD')}`
+                    `${moment(stat.birthtime).format('YYYYMMDD')}`
                 );
                 return arr.join('.');
             }

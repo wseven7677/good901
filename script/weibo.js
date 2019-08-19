@@ -11,7 +11,7 @@ function getArchiveName(stat, name) {
     arr.splice(
         1,
         0,
-        `-${moment(stat.birthtime).format('YYYYMMDDHHmmss')}`
+        `${moment(stat.birthtime).format('YYYYMMDDHHmmss')}`
     );
     return arr.join('.');
 }
@@ -20,7 +20,7 @@ function main() {
     const logPath = path.resolve(__dirname, './531-status.log');
 
     console.log('start...');
-    schedule.scheduleJob('/5 * * * *', d => {
+    schedule.scheduleJob('*/5 * * * *', d => {
         axios.get(`http://${config.host}:${config.port}/api/get_531_status`)
         .then(res => {
             const data = res.data.data;
@@ -30,11 +30,11 @@ function main() {
     });
     console.log('scheduling 531 status...');
 
-    schedule.scheduleJob('7 12 * * *', d => {
+    schedule.scheduleJob('3 12 * * *', d => {
         const now = moment();
         let logs = fs.readFileSync(logPath, { encoding: 'utf-8' });
         
-        let fileContent = logs.split('\n').map(one => {
+        let fileContent = logs.split('\n').reverse().map(one => {
             return `
             <li>${one}</li>
             `;
